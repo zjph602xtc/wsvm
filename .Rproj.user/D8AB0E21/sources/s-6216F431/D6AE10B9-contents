@@ -1,0 +1,13 @@
+Package: WSVM
+Version: 1.7-3
+Title: Subject Weighted Support Vector Machines (SVM)
+Imports: graphics, grDevices, class, stats, methods, utils
+Suggests: SparseM, xtable, Matrix, MASS, e1071
+Author: Tianchen Xu
+Maintainer: Tianchen Xu <tx2155@columbia.edu>
+Description: Functions for subject/instance weighted support vector machines (SVM). 
+    It uses a modified verison of libsvm and is compatible with package e1071.  
+License: GPL-2 | GPL-3
+LazyLoad: yes
+NeedsCompilation: yes
+Repository: CRAN
