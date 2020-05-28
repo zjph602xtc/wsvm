@@ -1,10 +1,10 @@
 # Model part --------------------------------------------------------------
 ## check what is loaded
 # dllpath <- getLoadedDLLs()
-# getDLLRegisteredRoutines(dllpath$WSVM[[2]])
+# getDLLRegisteredRoutines(dllpath$WeightSVM[[2]])
 
 ## load dataset
-require('WSVM')
+require('WeightSVM')
 data(iris)
 
 ## classification mode
@@ -126,10 +126,10 @@ points(model2$SV, pch = 6, cex = 2)
 # Tuning ------------------------------------------------------------------
 data(iris)
 
-obj <- tune_wsvm(Species~., weight = c(rep(0.8, 50),rep(1,100)), data = iris, ranges = list(gamma = 2^(-1:1), cost = 2^(2:4)), tunecontrol = tune.control(sampling = "fix"))
+obj <- tune_wsvm(Species~., weight = c(rep(0.8, 50),rep(1,100)), data = iris, ranges = list(gamma = 2^(-1:10), cost = 2^(2:4)), tunecontrol = tune.control(sampling = "fix"))
 
-set.seed(11)
-obj <- tune_wsvm(Species~., weight = c(rep(1, 52),rep(0,98)), data = iris, use_zero_weight = TRUE, ranges = list(gamma = 2^(-1:1), cost = 2^(2:4)), tunecontrol = tune.control(sampling = "bootstrap"))
+# set.seed(11)
+# obj <- tune_wsvm(Species~., weight = c(rep(1, 52),rep(0,98)), data = iris, use_zero_weight = TRUE, ranges = list(gamma = 2^(-1:1), cost = 2^(2:4)), tunecontrol = tune.control(sampling = "bootstrap"))
 
 summary(obj)
 plot(obj, transform.x = log2, transform.y = log2)

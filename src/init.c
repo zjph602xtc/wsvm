@@ -5,7 +5,7 @@
 
 
 void
-svmtrain (double *x, int *r, int *c, 
+svmtrain (double *x, int *r, int *c,
           double *y,
           double *W,
           int    *rowindex, int *colindex,
@@ -26,7 +26,7 @@ svmtrain (double *x, int *r, int *c,
           int    *cross,
           int    *sparse,
           int    *probability,
-	       
+
           int    *nclasses,
           int    *nr,
           int    *index,
@@ -71,7 +71,7 @@ svmpredict  (int    *decisionvalues,
 	     int    *xrowindex,
 	     int    *xcolindex,
 	     int    *sparsex,
-		  
+
 	     double *ret,
 	     double *dec,
 	     double *prob);
@@ -107,7 +107,7 @@ static const R_CMethodDef CEntries[] = {
     {NULL, NULL, 0}
 };
 
-void R_init_WSVM(DllInfo *dll)
+void R_init_WeightSVM(DllInfo *dll)
 {
     R_registerRoutines(dll, CEntries, NULL, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);

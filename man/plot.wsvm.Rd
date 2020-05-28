@@ -33,6 +33,8 @@ symbolPalette = palette(), svSymbol = "x", dataSymbol = "o", ...)
     \code{filled.contour} and \code{plot}.}
 }
 
+\value{None}
+
 \author{David Meyer \email{David.Meyer@R-project.org}\cr
   Modified by Tianchen Xu \email{tx2155@columbia.edu}}
 

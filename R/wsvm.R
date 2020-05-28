@@ -56,7 +56,7 @@ wsvm.default <-
               cost        = 1,
               nu          = 0.5,
               class.weights = NULL,
-              cachesize   = 40,
+              cachesize   = 100,
               tolerance   = 0.001,
               epsilon     = 0.1,
               shrinking   = TRUE,
@@ -455,10 +455,10 @@ predict.wsvm <-
             if (inherits(object, "wsvm.formula")) {
                 if(is.null(colnames(newdata)))
                     colnames(newdata) <- colnames(object$SV)
-                newdata <- na.action(newdata)
-                act <- attr(newdata, "na.action")
                 newdata <- model.matrix(delete.response(terms(object)),
                                         as.data.frame(newdata))
+                newdata <- na.action(newdata)
+                act <- attr(newdata, "na.action")
             } else {
                 newdata <- na.action(as.matrix(newdata))
                 act <- attr(newdata, "na.action")
@@ -718,53 +718,53 @@ plot.wsvm <-
         }
     }
 
-write.wsvm <-
-    function (object, svm.file = "Rdata.svm", scale.file = "Rdata.scale",
-              yscale.file = "Rdata.yscale", weight.file = "Weight")
-    {
-
-        ret <- .C (C_wsvmwrite,
-                   ## model
-                   as.double  (if (object$sparse) object$SV@ra else t(object$SV)),
-                   as.integer (nrow(object$SV)), as.integer(ncol(object$SV)),
-                   as.integer (if (object$sparse) object$SV@ia else 0),
-                   as.integer (if (object$sparse) object$SV@ja else 0),
-                   as.double  (as.vector(object$coefs)),
-                   as.double  (object$rho),
-                   as.integer (object$compprob),
-                   as.double  (if (object$compprob) object$probA else 0),
-                   as.double  (if (object$compprob) object$probB else 0),
-                   as.integer (object$nclasses),
-                   as.integer (object$tot.nSV),
-                   as.integer (object$labels),
-                   as.integer (object$nSV),
-                   as.integer (object$sparse),
-
-                   ## parameter
-                   as.integer (object$type),
-                   as.integer (object$kernel),
-                   as.integer (object$degree),
-                   as.double  (object$gamma),
-                   as.double  (object$coef0),
-
-                   ## filename
-                   as.character(svm.file)
-
-
-        )$ret
-
-        write.table(data.frame(center = object$x.scale$"scaled:center",
-                               scale  = object$x.scale$"scaled:scale"),
-                    file=scale.file, col.names=FALSE, row.names=FALSE)
-
-        write.table(data.frame(weight = object$weight),
-                    file=weight.file, col.names=FALSE, row.names=FALSE)
-
-        if (!is.null(object$y.scale))
-            write.table(data.frame(center = object$y.scale$"scaled:center",
-                                   scale  = object$y.scale$"scaled:scale"),
-                        file=yscale.file, col.names=FALSE, row.names=FALSE)
-    }
+# write.wsvm <-
+#     function (object, svm.file = "Rdata.svm", scale.file = "Rdata.scale",
+#               yscale.file = "Rdata.yscale", weight.file = "Weight")
+#     {
+#
+#         ret <- .C (C_wsvmwrite,
+#                    ## model
+#                    as.double  (if (object$sparse) object$SV@ra else t(object$SV)),
+#                    as.integer (nrow(object$SV)), as.integer(ncol(object$SV)),
+#                    as.integer (if (object$sparse) object$SV@ia else 0),
+#                    as.integer (if (object$sparse) object$SV@ja else 0),
+#                    as.double  (as.vector(object$coefs)),
+#                    as.double  (object$rho),
+#                    as.integer (object$compprob),
+#                    as.double  (if (object$compprob) object$probA else 0),
+#                    as.double  (if (object$compprob) object$probB else 0),
+#                    as.integer (object$nclasses),
+#                    as.integer (object$tot.nSV),
+#                    as.integer (object$labels),
+#                    as.integer (object$nSV),
+#                    as.integer (object$sparse),
+#
+#                    ## parameter
+#                    as.integer (object$type),
+#                    as.integer (object$kernel),
+#                    as.integer (object$degree),
+#                    as.double  (object$gamma),
+#                    as.double  (object$coef0),
+#
+#                    ## filename
+#                    as.character(svm.file)
+#
+#
+#         )$ret
+#
+#         write.table(data.frame(center = object$x.scale$"scaled:center",
+#                                scale  = object$x.scale$"scaled:scale"),
+#                     file=scale.file, col.names=FALSE, row.names=FALSE)
+#
+#         write.table(data.frame(weight = object$weight),
+#                     file=weight.file, col.names=FALSE, row.names=FALSE)
+#
+#         if (!is.null(object$y.scale))
+#             write.table(data.frame(center = object$y.scale$"scaled:center",
+#                                    scale  = object$y.scale$"scaled:scale"),
+#                         file=yscale.file, col.names=FALSE, row.names=FALSE)
+#     }
 
 coef.wsvm <- function(object, ...)
 {

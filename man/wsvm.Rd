@@ -17,7 +17,7 @@ na.omit, scale = TRUE)
 \method{wsvm}{default}(x, y = NULL, weight, scale = TRUE, type = NULL, kernel =
 "radial", degree = 3, gamma = if (is.vector(x)) 1 else 1 / ncol(x),
 coef0 = 0, cost = 1, nu = 0.5,
-class.weights = NULL, cachesize = 40, tolerance = 0.001, epsilon = 0.1,
+class.weights = NULL, cachesize = 100, tolerance = 0.001, epsilon = 0.1,
 shrinking = TRUE, cross = 0, probability = FALSE, fitted = TRUE,
 ..., subset, na.action = na.omit)
 }
@@ -79,7 +79,7 @@ shrinking = TRUE, cross = 0, probability = FALSE, fitted = TRUE,
     to be supplied (default weight: 1). All components have to be
     named. Specifying \code{"inverse"} will choose the weights \emph{inversely}
     proportional to the class distribution.}
-  \item{cachesize}{cache memory in MB (default 40)}
+  \item{cachesize}{cache memory in MB (default 100)}
   \item{tolerance}{tolerance of termination criterion (default: 0.001)}
   \item{epsilon}{epsilon in the insensitive-loss function (default: 0.1)}
   \item{shrinking}{option whether to use the shrinking-heuristics
@@ -193,7 +193,7 @@ Parameters of SVM-models usually \emph{must} be tuned to yield sensible results!
 \examples{
 ## check what is loaded
 dllpath <- getLoadedDLLs()
-getDLLRegisteredRoutines(dllpath$WSVM[[2]])
+getDLLRegisteredRoutines(dllpath$WeightSVM[[2]])
 
 ## load dataset
 data(iris)
@@ -210,12 +210,9 @@ model3 <- wsvm(x, y, weight = rep(10,150)) # similar to model 1,
                                # but larger weights for all subjects
 
 # These models provide error/warning info
-# wsvm(x, y) # no weight
-# wsvm(x, y, weight = rep(10,100)) # wrong lengty
-# wsvm(x, y, weight = c(Inf, rep(1,149))) # contains inf weight
-# wsvm(x, y, weight = rep(0,150)) # all weights are zeros
-# wsvm(x, y, weight = c(rep(0,25),rep(-1,25),rep(1,100)))
-                      # drop subjects with zero or nagetive weights
+try(wsvm(x, y)) # no weight
+try(wsvm(x, y, weight = rep(10,100))) # wrong length
+try(wsvm(x, y, weight = c(Inf, rep(1,149)))) # contains inf weight
 
 print(model1)
 summary(model1)

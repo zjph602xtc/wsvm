@@ -1,4 +1,4 @@
-useDynLib("WSVM", .registration = TRUE, .fixes='C_')
+useDynLib("WeightSVM", .registration = TRUE, .fixes='C_')
 
 import(graphics)
 import(grDevices)
@@ -8,7 +8,7 @@ importFrom("methods", "as", "getClass", "new")
 if(getRversion() >= "2.5.0")
     importFrom("utils", "write.table")
 
-export(wsvm, write.wsvm, tune_wsvm, tune.control)
+export(wsvm, tune_wsvm, tune.control)
 exportPattern("best\\..+")
 S3method(coef, wsvm)
 S3method(plot, wsvm)

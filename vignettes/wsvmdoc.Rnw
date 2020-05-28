@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+\usepackage{hyperref, graphicx, color, alltt, amsmath}
+\usepackage{Sweave}
+\usepackage[round]{natbib}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+%\VignetteIndexEntry{Weighted Support Vector Machine Formulation}
+%\VignetteDepends{WeightSVM}
+%\VignetteKeywords{classification, regression, machine learning, support vector machines}
+%\VignettePackage{WeightSVM}
+
+\SweaveOpts{engine=R,eps=FALSE}
+\setkeys{Gin}{width=0.8\textwidth}
+
+\title{Weighted Support Vector Machine Formulation
+\author{by Tianchen Xu}
+\url{tx2155@columbia.edu}
+}
+\maketitle
+\sloppy
+
+The original formulation of unweighted SVM with linear kernel is as follows \cite{valdimirnature}:
+  \begin{eqnarray}
+    \min_{\omega,\xi}&&\frac{1}{2}\|\omega\|^2+C \sum_{i=1}^n (\xi_i+\xi_i^*) \nonumber\\
+    \mbox{s.t.} &&y_i - \langle\omega,x_i\rangle-\omega_0\le \varepsilon + \xi_i,\nonumber\\
+    &&\langle\omega,x_i\rangle+\omega_0-y_i \le \varepsilon + \xi_i^*,\nonumber\\
+    &&\xi_i, \xi_i^* \ge 0.\nonumber
+\end{eqnarray}
+The constant $C>0$ determines the trade-off between the flatness of $f$ and the amount up to which deviations larger than $\varepsilon$ are tolerated. This corresponds to dealing with a so called
+$\varepsilon$-insensitive loss function $|\xi|_\varepsilon$ described by
+\begin{equation}
+|\xi|_\varepsilon =
+\begin{cases}
+  0, & \text{if }|\xi|\le \varepsilon\\
+  |\xi|-\varepsilon, & o/w.
+\end{cases}\nonumber
+\end{equation}\\
+
+
+
+The corresponding weighted SVM with $W_i$ as individual weights:
+  \begin{eqnarray}
+    \min_{\omega,\xi}&&\frac{1}{2}\|\omega\|^2+C \sum_{i=1}^n \textcolor{red}{W_i}(\xi_i+\xi_i^*) \nonumber\\
+    \mbox{s.t.} &&y_i - \langle\omega,x_i\rangle-\omega_0\le \varepsilon + \xi_i,\nonumber\\
+    &&\langle\omega,x_i\rangle+\omega_0-y_i \le \varepsilon + \xi_i^*,\nonumber\\
+    &&\xi_i, \xi_i^* \ge 0.\nonumber
+\end{eqnarray}\\
+
+Other kinds of weighted SVMs (with different kernels) have the similar formuation.\\
+\noindent Available kernels:\\
+\\
+\noindent
+\begin{minipage}{\textwidth}
+  \centering
+  \begin{tabular}{|l|l|l|} \hline
+    kernel            & formula & parameters \\ \hline \hline
+    linear            & $\bf u^\top v$& (none) \\
+    polynomial        & $(\gamma \mathbf{u^\top v}+c_0)^d$ & $\gamma, d, c_0$\\
+    radial basis fct. & $\exp\{-\gamma|\mathbf{u-v}|^2\}$&$\gamma$\\
+    sigmoid           & $\tanh\{\gamma \mathbf{u^\top v}+c_0\}$ &$\gamma, c_0$\\ \hline
+  \end{tabular}
+\end{minipage}
+
+\begin{thebibliography}{1}
+
+\bibitem[Valdimir and Vapnik(1995)]{valdimirnature}
+V~Valdimir and N~Vapnik.
+\newblock The nature of statistical learning theory.
+\newblock 1995.
+
+\end{thebibliography}
+
+\end{document}
