@@ -50,7 +50,7 @@ probability = FALSE, ..., na.action = na.omit)
   the training data.
 }
 \author{
-  David Meyer (based on C/C++-code by Chih-Chung Chang and Chih-Jen Lin) \email{David.Meyer@R-project.org}\cr
+  David Meyer (based on C/C++-code by Chih-Chung Chang and Chih-Jen Lin) \cr
   Modified by Tianchen Xu \email{tx2155@columbia.edu}
 }
 \seealso{

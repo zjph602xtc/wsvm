@@ -1,8 +1,8 @@
 Package: WeightSVM
-Version: 1.7-5
+Version: 1.7-9
 Title: Subject Weighted Support Vector Machines
 Imports: graphics, grDevices, stats, methods, utils
-Suggests: SparseM, xtable, Matrix, MASS, e1071
+Suggests: SparseM, xtable, Matrix, MASS, e1071, knitr
 Author: Tianchen Xu [aut, cre] (<https://orcid.org/0000-0002-0102-7630>),
   Chih-Chung Chang [ctb, cph] (libsvm C++-code),
   Chih-Chen Lin [ctb, cph] (libsvm C++-code),
@@ -19,11 +19,13 @@ Author: Tianchen Xu [aut, cre] (<https://orcid.org/0000-0002-0102-7630>),
 Maintainer: Tianchen Xu <tx2155@columbia.edu>
 Description: Functions for subject/instance weighted support vector machines (SVM). 
     It uses a modified version of 'libsvm' and is compatible with package 'e1071'. 
-URL: https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#weights_for_data_instances
+URL:
+        https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#weights_for_data_instances
 BugReports: https://github.com/zjph602xtc/wsvm/issues
 License: GPL-2 | GPL-3
 LazyLoad: yes
 NeedsCompilation: yes
-Suggests: knitr
 VignetteBuilder: knitr
 Repository: CRAN
+Packaged: 2021-10-11 04:55:40 UTC; Peter Xu
+Date/Publication: 2021-10-11 05:20:13 UTC

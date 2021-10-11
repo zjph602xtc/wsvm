@@ -35,7 +35,7 @@ symbolPalette = palette(), svSymbol = "x", dataSymbol = "o", ...)
 
 \value{None}
 
-\author{David Meyer \email{David.Meyer@R-project.org}\cr
+\author{David Meyer \cr
   Modified by Tianchen Xu \email{tx2155@columbia.edu}}
 
 \seealso{\code{\link{wsvm}}}

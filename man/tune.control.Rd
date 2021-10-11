@@ -50,8 +50,7 @@ performances = TRUE, error.fun = NULL)
   parameters (either the defaults or the user specified values).
 }
 \author{
-  David Meyer\cr
-  \email{David.Meyer@R-project.org}
+  David Meyer
 }
 \seealso{\code{\link{tune_wsvm}}, \code{\link[e1071]{tune}} (in package \pkg{e1071})}
 \keyword{models}
