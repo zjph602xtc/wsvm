@@ -159,7 +159,7 @@ Parameters of SVM-models usually \emph{must} be tuned to yield sensible results!
     \item
       Chang, Chih-Chung and Lin, Chih-Jen:\cr
       \emph{LIBSVM: a library for Support Vector Machines}\cr
-      \url{https://www.csie.ntu.edu.tw/~cjlin/libsvm}
+      \url{https://www.csie.ntu.edu.tw/~cjlin/libsvm/}
 
     \item Ming-Wei Chang, Hsuan-Tien Lin, Ming-Hen Tsai, Chia-Hua Ho and Hsiang-Fu Yu\cr
      \emph{Weights for data instances}\cr
