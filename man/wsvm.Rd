@@ -63,6 +63,7 @@ shrinking = TRUE, cross = 0, probability = FALSE, fitted = TRUE,
       \item{polynomial:}{\eqn{(\gamma u'v + coef0)^{degree}}{(gamma*u'*v + coef0)^degree}}
       \item{radial basis:}{\eqn{e^(-\gamma |u-v|^2)}{exp(-gamma*|u-v|^2)}}
       \item{sigmoid:}{\eqn{tanh(\gamma u'v + coef0)}{tanh(gamma*u'*v + coef0)}}
+      \item{precomputed:}{x is a precomputed kernel matrix}
       }
     }
   \item{degree}{parameter needed for kernel of type \code{polynomial} (default: 3)}

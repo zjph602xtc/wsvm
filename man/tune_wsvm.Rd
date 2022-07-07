@@ -85,7 +85,7 @@ obj <- tune_wsvm(Species~., weight = c(rep(0.8, 50),rep(1,100)),
 
 \donttest{
 set.seed(11)
-obj <- tune_wsvm(Species~., weight = c(rep(1, 52),rep(0,98)),
+obj <- tune_wsvm(Species~., weight = c(rep(0, 52),rep(1,98)),
             data = iris, use_zero_weight = TRUE,
             ranges = list(gamma = 2^(-1:1), cost = 2^(2:4)),
             tunecontrol = tune.control(sampling = "bootstrap"))

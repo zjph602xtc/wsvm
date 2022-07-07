@@ -1,5 +1,5 @@
 Package: WeightSVM
-Version: 1.7-9
+Version: 1.8-0
 Title: Subject Weighted Support Vector Machines
 Imports: graphics, grDevices, stats, methods, utils
 Suggests: SparseM, xtable, Matrix, MASS, e1071, knitr

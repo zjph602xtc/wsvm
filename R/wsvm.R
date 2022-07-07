@@ -117,7 +117,8 @@ wsvm.default <-
         kernel <- pmatch(kernel, c("linear",
                                    "polynomial",
                                    "radial",
-                                   "sigmoid"), 99) - 1
+                                   "sigmoid",
+                                   "precomputed"), 99) - 1
 
         if (kernel > 10) stop("wrong kernel specification!")
 
@@ -576,7 +577,8 @@ print.wsvm <-
         cat(" SVM-Kernel: ", c("linear",
                                "polynomial",
                                "radial",
-                               "sigmoid")[x$kernel+1], "\n")
+                               "sigmoid",
+                               "precomputed")[x$kernel+1], "\n")
         if (x$type==0 || x$type==3 || x$type==4)
             cat("       cost: ", x$cost, "\n")
         if (x$kernel==1)
