@@ -31,7 +31,7 @@ shrinking = TRUE, cross = 0, probability = FALSE, fitted = TRUE,
     or of class \code{\link[SparseM]{matrix.csr}}
     provided by the \pkg{SparseM} package, or of class
     \code{\link[slam]{simple_triplet_matrix}} provided by the \pkg{slam}
-    package).}
+    package). Or a kernel matrix of class \code{\link[kernlab]{kernelMatrix}} by the \pkg{kernlab} package.}
   \item{y}{a response vector with one label for each row/component of
     \code{x}. Can be either a factor (for classification tasks)
     or a numeric vector (for regression).}
@@ -63,7 +63,7 @@ shrinking = TRUE, cross = 0, probability = FALSE, fitted = TRUE,
       \item{polynomial:}{\eqn{(\gamma u'v + coef0)^{degree}}{(gamma*u'*v + coef0)^degree}}
       \item{radial basis:}{\eqn{e^(-\gamma |u-v|^2)}{exp(-gamma*|u-v|^2)}}
       \item{sigmoid:}{\eqn{tanh(\gamma u'v + coef0)}{tanh(gamma*u'*v + coef0)}}
-      \item{precomputed:}{x is a precomputed kernel matrix}
+      \item{precomputed:}{x is a precomputed kernel matrix that contains NO missing values. \code{scale} will not work. Cannot use \code{subset} and \code{na.action} with this kernel. }
       }
     }
   \item{degree}{parameter needed for kernel of type \code{polynomial} (default: 3)}
@@ -248,12 +248,16 @@ y <- log(x) + rnorm(x, sd = 0.2)
 # estimate model and predict input values
 model1 <- wsvm(x, y, weight = rep(1,99))
 model2 <- wsvm(x, y, weight = seq(99,1,length.out = 99)) # decreasing weights
+# library(kernlab)
+# model3 <- wsvm(kernlab::kernelMatrix(kernlab::rbfdot(sigma = 1), x), y,
+#      weight = rep(1,99), kernel = 'precomputed') # try user defined kernel
 
 # visualize
 plot(x, y)
-points(x, log(x), col = 2)
+lines(x, log(x), col = 2)
 points(x, fitted(model1), col = 4)
 points(x, fitted(model2), col = 3) # better fit for the first few points
+# points(x, fitted(model3), col = 5) # similar to model 1 with user defined kernel
 
 ## density-estimation
 # create 2-dim. normal with rho=0:
