@@ -122,7 +122,7 @@ wsvm.default <-
 
     if (kernel > 10) stop("wrong kernel specification!")
     if (kernel==4){
-      if (class(x)=="kernelMatrix") x <- x@.Data
+      if (inherits(x, "kernelMatrix")) x <- x@.Data
       if (dim(x)[1]!=dim(x)[2]) stop("the kernel matrix must be square!")
       if (!missing(subset)) stop("cannot use the 'subset' argument when the kernel is precalculated")
       if (any(is.na(x))) stop("cannot have missing values in x when the kernel is precalculated")
