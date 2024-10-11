@@ -1,5 +1,5 @@
 Package: WeightSVM
-Version: 1.7-13
+Version: 1.7-16
 Title: Subject Weighted Support Vector Machines
 Imports: graphics, grDevices, stats, methods, utils
 Suggests: SparseM, xtable, Matrix, MASS, e1071, knitr, slam, kernlab
@@ -27,5 +27,5 @@ LazyLoad: yes
 NeedsCompilation: yes
 VignetteBuilder: knitr
 Repository: CRAN
-Packaged: 2023-12-03 03:00:00 UTC; Peter Xu
-Date/Publication: 2023-12-03 03:00:00 UTC
+Packaged: 2024-10-10 03:00:00 UTC; Peter Xu
+Date/Publication: 2024-10-10 03:00:00 UTC
